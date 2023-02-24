@@ -5,10 +5,10 @@ using UnityEngine;
 public class camera_controler : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject player;
+    GameObject player;
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        player = GameObject.Find("player");
     }
 
     // Update is called once per frame

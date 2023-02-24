@@ -19,6 +19,8 @@ public class player_controler : MonoBehaviour
     public Image hurtfalsh;
     float hurtflash_timer=0;
     float Hp,Max_Hp,blood_len;
+    int status_temp;     
+    bool is_atk=false;
 
     void Start()
     {
@@ -71,6 +73,20 @@ public class player_controler : MonoBehaviour
         }
         blood.transform.localScale = new Vector3(blood_len * (Hp/Max_Hp), blood.transform.localScale.y, blood.transform.localScale.z);
         Hp_text.text = Hp.ToString() + "/" + Max_Hp.ToString();
+
+        // attack
+        if(is_atk==true){
+            player_ani_animator.SetInteger("status",0);
+            is_atk = false;
+        }
+        int status = player_ani_animator.GetInteger("status");
+        if(Input.GetKeyDown(KeyCode.J) && (status==0||status==1||status==2||status==3) ){
+            status_temp = status;
+            player_ani_animator.SetInteger("status",4);
+            //this.gameObject.transform.GetChild(1).GetComponent<Collision2D>().enabled = true;
+            this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
+            is_atk=true;
+        }
 
     }
     private void OnCollisionEnter2D(Collision2D other) {

@@ -1,4 +1,5 @@
 # unity ignore dir
 [Tt]emp/
 [Ll]ibrary/
+[Ll]ogs/
 # unity ignore file
